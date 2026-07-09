@@ -1,4 +1,8 @@
 {
   "gui.ink_and_quill": "Ink and Quill Rename",
-  "ink_and_quill.titl" : "Please Enter a name for the item"
+  "ink_and_quill.titl" : "Please Enter a name for the item",
+  "item.inkquill.ink_and_quill" : "Ink and Quill",
+  "item.inkquill.bottle_of_ink" : "Bottle of Ink",
+
+  "tag.item.inkquill.ink_and_quill_renameable": "Ink and Quill Renamable"
 }
