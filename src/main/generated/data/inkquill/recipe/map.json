@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "maps",
+  "key": {
+    "P": "inkquill:ink_and_quill",
+    "X": "minecraft:paper"
+  },
+  "pattern": [
+    "XXX",
+    "XPX",
+    "XXX"
+  ],
+  "result": {
+    "id": "minecraft:map"
+  }
+}

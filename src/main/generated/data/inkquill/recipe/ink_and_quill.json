@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:feather",
+    "inkquill:bottle_of_ink"
+  ],
+  "result": {
+    "id": "inkquill:ink_and_quill"
+  }
+}
