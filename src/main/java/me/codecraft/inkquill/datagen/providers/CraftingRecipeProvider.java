@@ -39,10 +39,10 @@ public class CraftingRecipeProvider extends FabricRecipeProvider {
             public void buildRecipes() {
 
 
-                shapeless(RecipeCategory.BREWING, Items.DYE.black(),4)
-                        .requires(Items.CHARCOAL)
-                        .unlockedBy(getHasName(Items.CHARCOAL),has( Items.CHARCOAL) )
-                        .save(output);
+//                shapeless(RecipeCategory.BREWING, Items.DYE.black(),4)
+//                        .requires(Items.CHARCOAL)
+//                        .unlockedBy(getHasName(Items.CHARCOAL),has( Items.CHARCOAL) )
+//                        .save(output);
 
                 DataComponentPatch data  = DataComponentPatch.builder().set(DataComponents.POTION_CONTENTS,new PotionContents(Potions.WATER)).build();
                 Ingredient potion =  Ingredient.of(Items.POTION);
@@ -54,6 +54,8 @@ public class CraftingRecipeProvider extends FabricRecipeProvider {
 //                                ,Ingredient.of(InkQuillItems.BOTTLE_OF_INK)))
 //                        .unlockedBy("has_black_dye",has(Items.DYE.black()))
 //                        .save(output, InkQuill.id("bottle_of_ink").toString());
+
+                /// Bottle of Ink
                 CustomCraftingRecipeBuilder.customCrafting(RecipeCategory.BREWING,(commonInfo, craftingBookInfo) ->
                                 new ShapelessRecipe(commonInfo,craftingBookInfo
                                         ,new ItemStackTemplate(InkAndQuillItemsRegistry.BOTTLE_OF_INK,1),
@@ -61,6 +63,16 @@ public class CraftingRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy("has_black_dye",has(Items.DYE.black()))
                         .save(output, InkAndQuill.id("bottle_of_ink").toString());
 
+                CustomCraftingRecipeBuilder.customCrafting(RecipeCategory.BREWING,(commonInfo, craftingBookInfo) ->
+                                new ShapelessRecipe(commonInfo,craftingBookInfo
+                                        ,new ItemStackTemplate(InkAndQuillItemsRegistry.BOTTLE_OF_INK,1),
+                                        List.of(potionIng,Ingredient.of(Items.CHARCOAL))))
+                        .unlockedBy("has_charcoal",has(Items.CHARCOAL))
+                        .save(output, InkAndQuill.id("ink_and_quill_alt").toString());
+
+                shapeless(RecipeCategory.BREWING,InkAndQuillItemsRegistry.BOTTLE_OF_INK).requires(Items.GLASS_BOTTLE).requires(Items.INK_SAC)
+                        .unlockedBy(getHasName(Items.GLASS_BOTTLE),has(Items.GLASS_BOTTLE)).unlockedBy(getHasName(Items.INK_SAC),has(Items.INK_SAC)).save(output,"bottle_of_ink_alt_2");
+                /// Ink and Quill
                 shapeless(RecipeCategory.MISC, InkAndQuillItemsRegistry.INK_AND_QUILL)
                         .requires(Items.FEATHER)
                         .requires(InkAndQuillItemsRegistry.BOTTLE_OF_INK)
@@ -76,6 +88,8 @@ public class CraftingRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy("has_paper",has(Items.PAPER))
                         .unlockedBy("has_ink_and_quill",has(InkAndQuillItemsRegistry.INK_AND_QUILL))
                         .save(output);
+
+
             }
         };
     }
