@@ -1,0 +1,8 @@
+{
+  "gui.ink_and_quill": "Renomear",
+  "ink_and_quill.titl" : "Digite um nome para o item",
+  "item.inkquill.ink_and_quill" : "Pena e Tinta",
+  "item.inkquill.bottle_of_ink" : "Frasco de Tinta",
+
+  "tag.item.inkquill.ink_and_quill_renameable": "Renomeáveis com Pena e Tinta"
+}
