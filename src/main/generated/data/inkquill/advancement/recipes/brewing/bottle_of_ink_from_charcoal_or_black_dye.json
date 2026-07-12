@@ -1,21 +1,21 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_glass_bottle": {
+    "has_black_dye": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:glass_bottle"
+            "items": "minecraft:black_dye"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_ink_sac": {
+    "has_charcoal": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:ink_sac"
+            "items": "minecraft:charcoal"
           }
         ]
       },
@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "inkquill:bottle_of_ink_alt_2"
+        "recipe": "inkquill:bottle_of_ink_from_charcoal_or_black_dye"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,13 +31,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_glass_bottle",
-      "has_ink_sac"
+      "has_black_dye",
+      "has_charcoal"
     ]
   ],
   "rewards": {
     "recipes": [
-      "inkquill:bottle_of_ink_alt_2"
+      "inkquill:bottle_of_ink_from_charcoal_or_black_dye"
     ]
   }
 }

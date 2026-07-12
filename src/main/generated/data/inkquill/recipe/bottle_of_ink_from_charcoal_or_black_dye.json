@@ -11,8 +11,8 @@
       }
     },
     [
-      "minecraft:charcoal",
-      "minecraft:black_dye"
+      "minecraft:black_dye",
+      "minecraft:charcoal"
     ]
   ],
   "result": {

@@ -1,24 +1,24 @@
 package me.codecraft.inkquill.gui;
 
 import me.codecraft.inkquill.InkAndQuill;
+import me.codecraft.inkquill.server.ItemRenameServerBoundPayload;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.SpriteIconButton;
 import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.state.gui.GuiRenderState;
-import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 
@@ -38,8 +38,8 @@ public class InkAndQuillItemScreen extends Screen {
     /** The Y size of the gui window in pixels. */
     private final int imageHeight = 76;
 
-    private final ItemStack itemToRename;
-    private final InteractionHand hand;
+    private ItemStack itemToRename;
+    private final Player player;
 
     SpriteIconButton doneButton;
     SpriteIconButton closeButton;
@@ -61,16 +61,19 @@ public class InkAndQuillItemScreen extends Screen {
 
 
 
-    public InkAndQuillItemScreen(ItemStack itemToRename,  InteractionHand handWithQuill) {
+    public InkAndQuillItemScreen(ItemStack itemToRename, Player player) {
         super(Component.translatable("gui.ink_and_quill"));
         this.itemToRename = itemToRename;
-        this.hand = handWithQuill;
+        this.player = player;
     }
 
     private void onRename() {
         System.out.println("Renamed");
-        DataComponentPatch data  = DataComponentPatch.builder().set(DataComponents.CUSTOM_NAME,Component.literal(this.renameBox.getValue())).build();
-        itemToRename.applyComponents(data);
+        String name =   this.renameBox.getValue();
+        ItemRenameServerBoundPayload payload  = new ItemRenameServerBoundPayload(itemToRename,name);
+        ClientPlayNetworking.send(payload);
+//        itemToRename.applyComponents(DataComponentPatch.builder().set(DataComponents.CUSTOM_NAME,Component.literal(name)).build());
+//        this.player.setItemInHand(InteractionHand.OFF_HAND, itemToRename);
         this.minecraft.gui.setScreen(null);
     }
 
@@ -84,8 +87,7 @@ public class InkAndQuillItemScreen extends Screen {
         this.renameBox.setTextColorUneditable(-1);
         this.renameBox.setBordered(false);
         this.renameBox.setMaxLength(50);
-        DataComponentMap itemName = itemToRename.getComponents();
-        this.renameBox.setValue(itemName.getOrDefault(DataComponents.CUSTOM_NAME,itemName.getOrDefault(DataComponents.ITEM_NAME,Component.literal("Unknown Item"))).getString());
+        this.renameBox.setValue(itemToRename.getHoverName().getString());
         WidgetSprites doneWidgetSprites = new WidgetSprites(DONE_BUTTON,DONE_BUTTON_HOVER);
         WidgetSprites closeWidgetSprites = new WidgetSprites(CLOSE_BUTTON,CLOSE_BUTTON_HOVER);
         doneButton = SpriteIconButton.builder(Component.literal("Rename"),button -> {this.onRename();},true)

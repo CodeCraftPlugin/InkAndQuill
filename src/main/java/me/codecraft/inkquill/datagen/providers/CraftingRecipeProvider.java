@@ -59,19 +59,20 @@ public class CraftingRecipeProvider extends FabricRecipeProvider {
                 CustomCraftingRecipeBuilder.customCrafting(RecipeCategory.BREWING,(commonInfo, craftingBookInfo) ->
                                 new ShapelessRecipe(commonInfo,craftingBookInfo
                                         ,new ItemStackTemplate(InkAndQuillItemsRegistry.BOTTLE_OF_INK,1),
-                                        List.of(potionIng,Ingredient.of(Items.DYE.black()))))
+                                        List.of(potionIng,Ingredient.of(Items.DYE.black(),Items.CHARCOAL))))
                         .unlockedBy("has_black_dye",has(Items.DYE.black()))
-                        .save(output, InkAndQuill.id("bottle_of_ink").toString());
-
-                CustomCraftingRecipeBuilder.customCrafting(RecipeCategory.BREWING,(commonInfo, craftingBookInfo) ->
-                                new ShapelessRecipe(commonInfo,craftingBookInfo
-                                        ,new ItemStackTemplate(InkAndQuillItemsRegistry.BOTTLE_OF_INK,1),
-                                        List.of(potionIng,Ingredient.of(Items.CHARCOAL))))
                         .unlockedBy("has_charcoal",has(Items.CHARCOAL))
-                        .save(output, InkAndQuill.id("ink_and_quill_alt").toString());
+                        .save(output, InkAndQuill.id("bottle_of_ink_from_charcoal_or_black_dye").toString());
 
-                shapeless(RecipeCategory.BREWING,InkAndQuillItemsRegistry.BOTTLE_OF_INK).requires(Items.GLASS_BOTTLE).requires(Items.INK_SAC)
-                        .unlockedBy(getHasName(Items.GLASS_BOTTLE),has(Items.GLASS_BOTTLE)).unlockedBy(getHasName(Items.INK_SAC),has(Items.INK_SAC)).save(output,"bottle_of_ink_alt_2");
+//                CustomCraftingRecipeBuilder.customCrafting(RecipeCategory.BREWING,(commonInfo, craftingBookInfo) ->
+//                                new ShapelessRecipe(commonInfo,craftingBookInfo
+//                                        ,new ItemStackTemplate(InkAndQuillItemsRegistry.BOTTLE_OF_INK,1),
+//                                        List.of(potionIng,Ingredient.of(Items.CHARCOAL))))
+//                        .unlockedBy("has_charcoal",has(Items.CHARCOAL))
+//                        .save(output, InkAndQuill.id("ink_and_quill_alt").toString());
+
+                shapeless(RecipeCategory.BREWING,InkAndQuillItemsRegistry.BOTTLE_OF_INK).requires(Items.GLASS_BOTTLE).requires(Ingredient.of(Items.INK_SAC,Items.GLOW_INK_SAC))
+                        .unlockedBy(getHasName(Items.GLASS_BOTTLE),has(Items.GLASS_BOTTLE)).unlockedBy(getHasName(Items.INK_SAC),has(Items.INK_SAC)).unlockedBy("has_glow_ink_sac",has(Items.GLOW_INK_SAC)).save(output);
                 /// Ink and Quill
                 shapeless(RecipeCategory.MISC, InkAndQuillItemsRegistry.INK_AND_QUILL)
                         .requires(Items.FEATHER)
@@ -79,15 +80,16 @@ public class CraftingRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.FEATHER),has(Items.FEATHER))
                         .unlockedBy(getHasName(InkAndQuillItemsRegistry.BOTTLE_OF_INK),has(InkAndQuillItemsRegistry.BOTTLE_OF_INK))
                         .save(output);
+//                shaped(RecipeCategory.TRANSPORTATION,Items.MAP)
+//                        .pattern("XXX")
+//                        .pattern("XPX")
+//                        .pattern("XXX").define('X',Items.PAPER).define('P', InkAndQuillItemsRegistry.INK_AND_QUILL)
+//                        .group("maps")
+//                        .save(output);
 
-                shaped(RecipeCategory.TRANSPORTATION,Items.MAP)
-                        .pattern("XXX")
-                        .pattern("XPX")
-                        .pattern("XXX").define('X',Items.PAPER).define('P', InkAndQuillItemsRegistry.INK_AND_QUILL)
-                        .group("maps")
+                shapeless(RecipeCategory.TRANSPORTATION,Items.MAP).requires(InkAndQuillItemsRegistry.BOTTLE_OF_INK).requires(Items.PAPER)
                         .unlockedBy("has_paper",has(Items.PAPER))
-                        .unlockedBy("has_ink_and_quill",has(InkAndQuillItemsRegistry.INK_AND_QUILL))
-                        .save(output);
+                        .unlockedBy("has_ink_and_quill",has(InkAndQuillItemsRegistry.INK_AND_QUILL)).save(output);
 
 
             }

@@ -23,19 +23,19 @@ public class InkAndQuillItem extends Item {
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack offHandItem  = player.getItemInHand(InteractionHand.OFF_HAND);
+        if (!level.isClientSide()){
+            return InteractionResult.SUCCESS_SERVER;
+        }
         if (level.isClientSide()){
             if (offHandItem.is(InkAndQuillTagProvider.INK_AND_QUILL_RENAMEABLE)){
                 Screen currentScreen = Minecraft.getInstance().gui.screen();
                 Minecraft.getInstance().gui.setScreen(
-                        new InkAndQuillItemScreen(offHandItem, InteractionHand.MAIN_HAND)
+                        new InkAndQuillItemScreen(offHandItem, player)
                 );
+                return InteractionResult.SUCCESS;
             }
-
-
         }
-
-
-        return super.use(level, player, hand);
+     return super.use(level, player, hand);
     }
 
     @Override

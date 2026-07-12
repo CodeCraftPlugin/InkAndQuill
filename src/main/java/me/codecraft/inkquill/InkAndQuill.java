@@ -1,16 +1,27 @@
 package me.codecraft.inkquill;
 
 import me.codecraft.inkquill.datagen.advancedRecipe.PotionRecipe;
+import me.codecraft.inkquill.items.InkAndQuillItem;
 import me.codecraft.inkquill.items.InkAndQuillItemsRegistry;
+import me.codecraft.inkquill.server.ItemRenameServerBoundPayload;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,9 +42,24 @@ public class InkAndQuill implements ModInitializer {
 //		Registry.register(BuiltInRegistries.ITEM, ResourceKey.create(Registries.ITEM,id("test")),new Item(new Item.Properties()));
 
 		LOGGER.info("Hello Fabric world!");
+		//Server
+		PayloadTypeRegistry.serverboundPlay().register(ItemRenameServerBoundPayload.TYPE, ItemRenameServerBoundPayload.CODEC);
+		ServerPlayNetworking.registerGlobalReceiver(ItemRenameServerBoundPayload.TYPE,(payload, context) -> {
+			System.out.println("Recived the Payload ");
 
+			System.out.println(payload.itemtoRenme());
+			System.out.println(payload.name());
+			ItemStack itemStack = payload.itemtoRenme();
+			String name = payload.name();
+			ItemStack main = itemStack.copy();
+			main.applyComponents(DataComponentPatch.builder().set(DataComponents.CUSTOM_NAME,Component.literal(name)).build());
+			context.player().setItemInHand(InteractionHand.OFF_HAND,main);
+			context.player().setItemInHand(InteractionHand.MAIN_HAND, InkAndQuillItem.damage(context.player().getItemInHand(InteractionHand.MAIN_HAND)).create());
+
+		});
+		//Item
 		InkAndQuillItemsRegistry.registerItems();
-
+		//Serializer
 		Registry.register(BuiltInRegistries.RECIPE_SERIALIZER,id("custom_potion"), PotionRecipe.SERIALIZER);
 
 	}

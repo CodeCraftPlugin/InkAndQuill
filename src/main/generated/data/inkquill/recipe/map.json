@@ -1,9 +1,10 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "maps",
   "ingredients": [
-    "minecraft:paper",
-    "inkquill:ink_and_quill"
+    "inkquill:bottle_of_ink",
+    "minecraft:paper"
   ],
-  "result": "minecraft:map"
+  "result": {
+    "id": "minecraft:map"
+  }
 }
