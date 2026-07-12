@@ -1,16 +1,9 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "group": "maps",
-  "key": {
-    "P": "inkquill:ink_and_quill",
-    "X": "minecraft:paper"
-  },
-  "pattern": [
-    "XXX",
-    "XPX",
-    "XXX"
+  "ingredients": [
+    "minecraft:paper",
+    "inkquill:ink_and_quill"
   ],
-  "result": {
-    "id": "minecraft:map"
-  }
+  "result": "minecraft:map"
 }

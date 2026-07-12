@@ -10,7 +10,10 @@
         }
       }
     },
-    "minecraft:charcoal"
+    [
+      "minecraft:charcoal",
+      "minecraft:black_dye"
+    ]
   ],
   "result": {
     "id": "inkquill:bottle_of_ink"

@@ -1,16 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "fabric:type": "fabric:components",
-      "base": "minecraft:potion",
-      "components": {
-        "minecraft:potion_contents": {
-          "potion": "minecraft:water"
-        }
-      }
-    },
-    "minecraft:black_dye"
+    [
+      "minecraft:glass_bottle"
+    ],
+    [
+      "minecraft:ink_sac",
+      "minecraft:glow_ink_sac"
+    ]
   ],
   "result": {
     "id": "inkquill:bottle_of_ink"
