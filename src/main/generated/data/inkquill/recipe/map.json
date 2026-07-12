@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "inkquill:bottle_of_ink",
+    "inkquill:ink_and_quill",
     "minecraft:paper"
   ],
   "result": {

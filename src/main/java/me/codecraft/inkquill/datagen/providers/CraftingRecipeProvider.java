@@ -87,7 +87,7 @@ public class CraftingRecipeProvider extends FabricRecipeProvider {
 //                        .group("maps")
 //                        .save(output);
 
-                shapeless(RecipeCategory.TRANSPORTATION,Items.MAP).requires(InkAndQuillItemsRegistry.BOTTLE_OF_INK).requires(Items.PAPER)
+                shapeless(RecipeCategory.TRANSPORTATION,Items.MAP).requires(InkAndQuillItemsRegistry.INK_AND_QUILL).requires(Items.PAPER)
                         .unlockedBy("has_paper",has(Items.PAPER))
                         .unlockedBy("has_ink_and_quill",has(InkAndQuillItemsRegistry.INK_AND_QUILL)).save(output);
 
