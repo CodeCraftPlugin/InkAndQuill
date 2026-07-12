@@ -9,7 +9,26 @@ The fundamental of this mod is to be a QOL for Minecraft, ie replacing the need 
  - The ability to create maps cheaply, ie rather than using 4 iron and 1 red stone , use black dye /ink sac to create maps
  - The ability rename Name tag and Equipments without needing to construct and Anvil.
 ### Demo
-I will add the demo on github
+#### Recipes
+##### Bottle of Ink
+- from charcoal and water bottle:
+- <img width="725" height="658" alt="image" src="https://github.com/user-attachments/assets/b69501df-e129-4ff5-bf33-b3cf9a20e402" />
+- From black dye and Water Bottle:
+- <img width="1000" height="895" alt="image" src="https://github.com/user-attachments/assets/445c2ab8-4806-4055-9024-b7bbec58d69a" />
+- From Ink Sac and Glass Bottle:
+- <img width="696" height="655" alt="image" src="https://github.com/user-attachments/assets/9347547e-a1ed-4e61-95e2-340e9338d43d" />
+- From Glow Ink Sac and Glass Bottle:
+- <img width="688" height="654" alt="image" src="https://github.com/user-attachments/assets/dbe05948-f659-492e-9aff-328e117a08f4" />
+##### Ink and Quill
+<img width="699" height="653" alt="image" src="https://github.com/user-attachments/assets/b57b17a6-2eb1-4c17-bd7a-742c2df3a099" />
+
+##### Map
+
+#### GUI
+<img width="785" height="430" alt="image" src="https://github.com/user-attachments/assets/2749102b-610f-45d5-8f65-f34eba292c6f" />
+
+#### Video Demo:
+https://github.com/user-attachments/assets/bca8263d-0dee-4e92-8424-0c2fc7f05452
 
 ## Setup
 
@@ -20,3 +39,5 @@ For setup instructions, please see the [Fabric Documentation page](https://docs.
 This code is available under the MIT license. Feel free to learn from it and incorporate it in your own projects.
 The ART for **"Ink And Quill"** and **"Bottle of Ink"**  is under **MIT** and is created by [Startraveler](https://modrinth.com/user/startraveler)
 The GUI Texture is **MIT** and is created by [Stasidzie](https://modrinth.com/user/Stasidzie)
+
+
