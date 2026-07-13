@@ -1,9 +1,8 @@
 package me.codecraft.inkquill.items;
 
+import me.codecraft.inkquill.InkAndQuill;
 import me.codecraft.inkquill.datagen.providers.InkAndQuillTagProvider;
-import me.codecraft.inkquill.gui.InkAndQuillItemScreen;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
+import me.codecraft.inkquill.gui.ScreenInterfaceManager;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +13,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
 
+//import static me.codecraft.inkquill.InkAndQuill.SCREEN_OPENER;
+
+
 public class InkAndQuillItem extends Item {
 
     public InkAndQuillItem(Properties properties) {
@@ -23,15 +25,9 @@ public class InkAndQuillItem extends Item {
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack offHandItem  = player.getItemInHand(InteractionHand.OFF_HAND);
-        if (!level.isClientSide()){
-            return InteractionResult.SUCCESS_SERVER;
-        }
         if (level.isClientSide()){
             if (offHandItem.is(InkAndQuillTagProvider.INK_AND_QUILL_RENAMEABLE)){
-                Screen currentScreen = Minecraft.getInstance().gui.screen();
-                Minecraft.getInstance().gui.setScreen(
-                        new InkAndQuillItemScreen(offHandItem, player)
-                );
+                InkAndQuill.SCREEN_OPENER.open(offHandItem, player);
                 return InteractionResult.SUCCESS;
             }
         }

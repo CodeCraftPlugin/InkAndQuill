@@ -18,8 +18,12 @@
 		"main": [
           "me.codecraft.inkquill.InkAndQuill"
 		],
+		
 		"fabric-datagen": [
 			"me.codecraft.inkquill.InkAndQuillDataGenerator"
+		],
+		"client": [
+			"me.codecraft.inkquill.InkAndQuillClient"
 		]
 	},
 	"mixins": [

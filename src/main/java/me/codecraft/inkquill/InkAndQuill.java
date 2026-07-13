@@ -1,9 +1,11 @@
 package me.codecraft.inkquill;
 
 import me.codecraft.inkquill.datagen.advancedRecipe.PotionRecipe;
+import me.codecraft.inkquill.gui.ScreenInterfaceManager;
 import me.codecraft.inkquill.items.InkAndQuillItem;
 import me.codecraft.inkquill.items.InkAndQuillItemsRegistry;
 import me.codecraft.inkquill.server.ItemRenameServerBoundPayload;
+import me.codecraft.inkquill.server.RenameScreenOpenerServer;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -32,6 +34,8 @@ public class InkAndQuill implements ModInitializer {
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+	public static ScreenInterfaceManager SCREEN_OPENER = new RenameScreenOpenerServer();
 
 	@Override
 	public void onInitialize() {
