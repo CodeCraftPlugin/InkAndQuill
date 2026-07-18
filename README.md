@@ -32,6 +32,9 @@ https://github.com/user-attachments/assets/bca8263d-0dee-4e92-8424-0c2fc7f05452
 
 ## Setup
 
+Use fabric 19.3 loader and this mod ships the fabric api so you don't need to add that, check the modrinth page for more information
+[Ink and Quill](https://modrinth.com/mod/ink-and-quill)
+
 For setup instructions, please see the [Fabric Documentation page](https://docs.fabricmc.net/develop/getting-started/creating-a-project#setting-up) related to the IDE that you are using.
 
 ## License
