@@ -1,13 +1,13 @@
 # InkQuill
-    
+
 **This mod is port and upgrade of the [Ink and Quill](https://modrinth.com/mod/inkandquill) by [Stasidzie](https://modrinth.com/user/Stasidzie)**
 
 How did I go about making this mod, well this was requested by vico in the project fabric discord server for his modpack.<br>
 The fundamental of this mod is to be a QOL for Minecraft, ie replacing the need for anvil for renaming of name tags and equipment.
 
 ## Features
- - The ability to create maps cheaply, ie rather than using 4 iron and 1 red stone , use black dye /ink sac to create maps
- - The ability rename Name tag and Equipments without needing to construct and Anvil.
+- The ability to create maps cheaply, ie rather than using 4 iron and 1 red stone , use black dye /ink sac to create maps
+- The ability rename Name tag and Equipments without needing to construct and Anvil.
 ### Demo
 #### Recipes
 ##### Bottle of Ink
@@ -23,7 +23,7 @@ The fundamental of this mod is to be a QOL for Minecraft, ie replacing the need 
 <img width="699" height="653" alt="image" src="https://github.com/user-attachments/assets/b57b17a6-2eb1-4c17-bd7a-742c2df3a099" />
 
 ##### Map
-
+<img width="686" height="646" alt="image" src="https://github.com/user-attachments/assets/b188097a-7c40-4e58-84c6-99929556fb27" />
 #### GUI
 <img width="785" height="430" alt="image" src="https://github.com/user-attachments/assets/2749102b-610f-45d5-8f65-f34eba292c6f" />
 
