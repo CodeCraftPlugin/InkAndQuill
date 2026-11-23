@@ -1,10 +1,13 @@
 package me.codecraft.inkquill.datagen.providers;
 
 import me.codecraft.inkquill.InkAndQuill;
+import me.codecraft.inkquill.datagen.advancedRecipe.PotionRecipe;
 import me.codecraft.inkquill.items.InkAndQuillItemsRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.recipe.v1.ingredient.DefaultCustomIngredients;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
@@ -13,12 +16,16 @@ import net.minecraft.data.recipes.CustomCraftingRecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.references.ItemIds;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
 
 import java.util.List;
@@ -31,20 +38,19 @@ public class CraftingRecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
+    protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, BootstrapContext<Recipe<?>> recipeContext, BootstrapContext<Advancement> advancementContext) {
 
         HolderLookup.RegistryLookup<Item> itemLookup = registries.lookupOrThrow(Registries.ITEM);
-        return new RecipeProvider(registries,output) {
+        return new RecipeProvider(recipeContext,advancementContext) {
             @Override
             public void buildRecipes() {
-
+                DataComponentPatch data  = DataComponentPatch.builder().set(DataComponents.POTION_CONTENTS,new PotionContents(Potions.WATER)).build();
+                ItemStackTemplate stackTemplate = new ItemStackTemplate(Items.POTION,data);
 
 //                shapeless(RecipeCategory.BREWING, Items.DYE.black(),4)
 //                        .requires(Items.CHARCOAL)
 //                        .unlockedBy(getHasName(Items.CHARCOAL),has( Items.CHARCOAL) )
 //                        .save(output);
-
-                DataComponentPatch data  = DataComponentPatch.builder().set(DataComponents.POTION_CONTENTS,new PotionContents(Potions.WATER)).build();
                 Ingredient potion =  Ingredient.of(Items.POTION);
                 Ingredient potionIng = DefaultCustomIngredients.components(potion,data);
 //                CustomCraftingRecipeBuilder.customCrafting(RecipeCategory.BREWING,(commonInfo, craftingBookInfo) ->
@@ -56,13 +62,27 @@ public class CraftingRecipeProvider extends FabricRecipeProvider {
 //                        .save(output, InkQuill.id("bottle_of_ink").toString());
 
                 /// Bottle of Ink
-                CustomCraftingRecipeBuilder.customCrafting(RecipeCategory.BREWING,(commonInfo, craftingBookInfo) ->
-                                new ShapelessRecipe(commonInfo,craftingBookInfo
-                                        ,new ItemStackTemplate(InkAndQuillItemsRegistry.BOTTLE_OF_INK,1),
-                                        List.of(potionIng,Ingredient.of(Items.DYE.black(),Items.CHARCOAL))))
-                        .unlockedBy("has_black_dye",has(Items.DYE.black()))
-                        .unlockedBy("has_charcoal",has(Items.CHARCOAL))
+
+                CustomCraftingRecipeBuilder.customCrafting(RecipeCategory.BREWING, (commonInfo, craftingBookInfo) ->
+                                new PotionRecipe(commonInfo, craftingBookInfo,
+                                        List.of(
+                                                // slot 1: charcoal OR black dye
+                                                List.of(new ItemStackTemplate(Items.CHARCOAL),
+                                                        new ItemStackTemplate(Items.DYE.black())),
+                                                // slot 2: a water potion (matches on the component data)
+                                                List.of(stackTemplate)
+                                        ),
+                                        new ItemStackTemplate(InkAndQuillItemsRegistry.BOTTLE_OF_INK, 1)))
+                        .unlockedBy("has_black_dye", has(Items.DYE.black()))
+                        .unlockedBy("has_charcoal", has(Items.CHARCOAL))
                         .save(output, InkAndQuill.id("bottle_of_ink_from_charcoal_or_black_dye").toString());
+//                CustomCraftingRecipeBuilder.customCrafting(RecipeCategory.BREWING,(commonInfo, craftingBookInfo) ->
+//                                new ShapelessRecipe(commonInfo,craftingBookInfo
+//                                        ,new ItemStackTemplate(InkAndQuillItemsRegistry.BOTTLE_OF_INK,1),
+//                                        List.of(potionIng,Ingredient.of(Items.DYE.black(),Items.CHARCOAL))))
+//                        .unlockedBy("has_black_dye",has(Items.DYE.black()))
+//                        .unlockedBy("has_charcoal",has(Items.CHARCOAL))
+//                        .save(output, InkAndQuill.id("bottle_of_ink_from_charcoal_or_black_dye").toString());
 
 //                CustomCraftingRecipeBuilder.customCrafting(RecipeCategory.BREWING,(commonInfo, craftingBookInfo) ->
 //                                new ShapelessRecipe(commonInfo,craftingBookInfo

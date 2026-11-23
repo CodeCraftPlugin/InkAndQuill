@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "inkquill:ink_and_quill"
+        "recipes": "inkquill:ink_and_quill"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

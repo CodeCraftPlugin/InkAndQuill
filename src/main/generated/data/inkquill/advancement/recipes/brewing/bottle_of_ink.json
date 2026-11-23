@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "inkquill:bottle_of_ink"
+        "recipes": "inkquill:bottle_of_ink"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

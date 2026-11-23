@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "inkquill:bottle_of_ink_from_charcoal_or_black_dye"
+        "recipes": "inkquill:bottle_of_ink_from_charcoal_or_black_dye"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "inkquill:map"
+        "recipes": "inkquill:map"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

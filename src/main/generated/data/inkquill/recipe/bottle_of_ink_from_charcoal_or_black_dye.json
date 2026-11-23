@@ -1,18 +1,23 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "fabric:type": "fabric:components",
-      "base": "minecraft:potion",
-      "components": {
-        "minecraft:potion_contents": {
-          "potion": "minecraft:water"
-        }
-      }
-    },
+  "type": "inkquill:custom_potion",
+  "input": [
     [
-      "minecraft:black_dye",
-      "minecraft:charcoal"
+      {
+        "id": "minecraft:charcoal"
+      },
+      {
+        "id": "minecraft:black_dye"
+      }
+    ],
+    [
+      {
+        "components": {
+          "minecraft:potion_contents": {
+            "potion": "minecraft:water"
+          }
+        },
+        "id": "minecraft:potion"
+      }
     ]
   ],
   "result": {
